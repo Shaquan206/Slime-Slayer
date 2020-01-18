@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     GameObject enemy;
     Enemy enemyScript;
 
+    public PlayerMovementController PMC;
+
     private void Start()
     {
         LoadPlayer();
@@ -52,7 +54,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(Regenerate());
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             if (attacking == false)
             {
@@ -94,6 +96,7 @@ public class Player : MonoBehaviour
             maxHealth -= 10;
             health = maxHealth;
             level--;
+            PMC.moveSpeed -= 0.1f;
             XP = 0;
             damage--;
             SavePlayer();
@@ -119,6 +122,7 @@ public class Player : MonoBehaviour
         level++;
         health = maxHealth;
         damage++;
+        PMC.moveSpeed += 0.1f;
         attackSpeed -= 0.1f;
         if (attackSpeed < 0.1f)
         {
@@ -139,6 +143,7 @@ public class Player : MonoBehaviour
 
     public void SavePlayer()
     {
+        GlobalControl.Instance.moveSpeed = PMC.moveSpeed;
         GlobalControl.Instance.level = level;
         GlobalControl.Instance.XP = XP;
         GlobalControl.Instance.damage = damage;
@@ -151,6 +156,7 @@ public class Player : MonoBehaviour
 
     private void LoadPlayer()
     {
+        PMC.moveSpeed = GlobalControl.Instance.moveSpeed;
         level = GlobalControl.Instance.level;
         XP = GlobalControl.Instance.XP;
         damage = GlobalControl.Instance.damage;

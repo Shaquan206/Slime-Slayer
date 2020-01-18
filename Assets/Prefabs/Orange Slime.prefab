@@ -292,7 +292,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &5078148495089389609
 MonoBehaviour:
@@ -519,6 +519,7 @@ MonoBehaviour:
   health: 54
   damage: 34
   XPAmount: 18
+  despawnRange: 30
 --- !u!95 &5078148496054651414
 Animator:
   serializedVersion: 3

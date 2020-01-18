@@ -12,6 +12,7 @@ public class SceneMan : MonoBehaviour
 
     public void LoadNewGameScene()
     {
+        GlobalControl.Instance.moveSpeed = 5;
         GlobalControl.Instance.level = 0;
         GlobalControl.Instance.XP = 0;
         GlobalControl.Instance.damage = 1;

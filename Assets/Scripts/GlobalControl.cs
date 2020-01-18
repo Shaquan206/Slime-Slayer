@@ -6,6 +6,7 @@ public class GlobalControl : MonoBehaviour
 {
     public static GlobalControl Instance;
 
+    public float moveSpeed;
     public int level;
     public int XP;
 

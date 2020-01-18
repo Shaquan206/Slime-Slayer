@@ -378,7 +378,7 @@ MonoBehaviour:
   greenSlimePrefab: {fileID: 1784354216355021262, guid: f785228bdc00b4b3c94baa2dd16bb0e5,
     type: 3}
   greenSlimeSpawnPoint: {fileID: 845979794}
-  greenSlimeSpawnRate: 3
+  greenSlimeSpawnRate: 0.5
   greenSlimeSpawnRange: 15
   isSpawningGreenSlime: 0
   yellowSlimePrefab: {fileID: 4997389898751598444, guid: b4cf364ff12154fac9396ba6b9fcc712,
@@ -496,7 +496,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &430620758
 RectTransform:
@@ -595,7 +595,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!224 &470273568
 RectTransform:
@@ -44671,6 +44671,7 @@ MonoBehaviour:
   regenerateSpeed: 1
   attackSpeed: 1
   attackTime: 0.05
+  PMC: {fileID: 1917287817}
 --- !u!1 &2017191269
 GameObject:
   m_ObjectHideFlags: 0
