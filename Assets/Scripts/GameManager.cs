@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
     public float blueSlimeSpawnRange;
     public bool isSpawningBlueSlime;
 
+    public GameObject greenSlimePrefab;
+    public GameObject greenSlimeSpawnPoint;
+    public float greenSlimeSpawnRate;
+    public float greenSlimeSpawnRange;
+    public bool isSpawningGreenSlime;
+
 
     private void Update()
     {
@@ -38,6 +44,15 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(SpawnBlueSlime());
             }
         }
+
+        if (isSpawningGreenSlime == false)
+        {
+            float dist = Vector3.Distance(greenSlimeSpawnPoint.transform.position, player.transform.position);
+            if (dist < greenSlimeSpawnRange)
+            {
+                StartCoroutine(SpawnGreenSlime());
+            }
+        }
     }
 
     IEnumerator SpawnRedSlime()
@@ -54,6 +69,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(blueSlimeSpawnRate);
         Instantiate(blueSlimePrefab, blueSlimeSpawnPoint.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0f), Quaternion.identity);
         isSpawningBlueSlime = false;
+    }
+
+    IEnumerator SpawnGreenSlime()
+    {
+        isSpawningGreenSlime = true;
+        yield return new WaitForSeconds(greenSlimeSpawnRate);
+        Instantiate(greenSlimePrefab, greenSlimeSpawnPoint.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0f), Quaternion.identity);
+        isSpawningGreenSlime = false;
     }
 
 }
