@@ -407,8 +407,8 @@ MonoBehaviour:
   healthSlider: {fileID: 4997389898629084369}
   rb: {fileID: 4997389898751598446}
   moveSpeed: 3
-  health: 14
-  damage: 11
+  health: 33
+  damage: 22
   XPAmount: 8
 --- !u!95 &4997389898751598442
 Animator:

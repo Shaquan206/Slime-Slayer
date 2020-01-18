@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        LoadPlayer();
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;
     }
@@ -86,6 +87,16 @@ public class Player : MonoBehaviour
     {
         if (health < 1)
         {
+            if (level < 10)
+            {
+                attackSpeed += 0.1f;
+            }
+            maxHealth -= 10;
+            health = maxHealth;
+            level--;
+            XP = 0;
+            damage--;
+            SavePlayer();
             SceneManager.LoadScene("MainMenu");
         }
     }
@@ -121,8 +132,32 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(regenerateSpeed);
         if (health < maxHealth)
         {
-            health++;
+            health += maxHealth / 10;
         }
         regenerating = false;
+    }
+
+    public void SavePlayer()
+    {
+        GlobalControl.Instance.level = level;
+        GlobalControl.Instance.XP = XP;
+        GlobalControl.Instance.damage = damage;
+        GlobalControl.Instance.health = health;
+        GlobalControl.Instance.maxHealth = maxHealth;
+        GlobalControl.Instance.regenerateSpeed = regenerateSpeed;
+        GlobalControl.Instance.attackSpeed = attackSpeed;
+        GlobalControl.Instance.attackTime = attackTime;
+    }
+
+    private void LoadPlayer()
+    {
+        level = GlobalControl.Instance.level;
+        XP = GlobalControl.Instance.XP;
+        damage = GlobalControl.Instance.damage;
+        health = GlobalControl.Instance.health;
+        maxHealth = GlobalControl.Instance.maxHealth;
+        regenerateSpeed = GlobalControl.Instance.regenerateSpeed;
+        attackSpeed = GlobalControl.Instance.attackSpeed;
+        attackTime = GlobalControl.Instance.attackTime;
     }
 }

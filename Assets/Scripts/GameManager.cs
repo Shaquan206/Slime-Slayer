@@ -148,5 +148,4 @@ public class GameManager : MonoBehaviour
         Instantiate(orangeSlimePrefab, orangeSlimeSpawnPoint.transform.position + new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0f), Quaternion.identity);
         isSpawningOrangeSlime = false;
     }
-
 }

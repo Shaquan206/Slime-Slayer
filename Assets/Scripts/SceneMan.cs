@@ -9,4 +9,17 @@ public class SceneMan : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+
+    public void LoadNewGameScene()
+    {
+        GlobalControl.Instance.level = 0;
+        GlobalControl.Instance.XP = 0;
+        GlobalControl.Instance.damage = 1;
+        GlobalControl.Instance.health = 10;
+        GlobalControl.Instance.maxHealth = 10;
+        GlobalControl.Instance.regenerateSpeed = 1;
+        GlobalControl.Instance.attackSpeed = 1;
+        GlobalControl.Instance.attackTime = 0.05f;
+        SceneManager.LoadScene("GameScene");
+    }
 }
