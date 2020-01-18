@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
 
+    public int entitys;
+    public int entityLimit;
+
     public GameObject redSlimePrefab;
     public GameObject redSlimeSpawnPoint;
     public float redSlimeSpawnRate;
@@ -46,6 +49,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (entitys > entityLimit - 1)
+        {
+            return;
+        }
         if (isSpawningRedSlime == false)
         {
             float dist = Vector3.Distance(redSlimeSpawnPoint.transform.position, player.transform.position);

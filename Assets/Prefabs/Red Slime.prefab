@@ -519,6 +519,7 @@ MonoBehaviour:
   health: 5
   damage: 2
   XPAmount: 1
+  despawnRange: 30
 --- !u!95 &8647966940030260508
 Animator:
   serializedVersion: 3

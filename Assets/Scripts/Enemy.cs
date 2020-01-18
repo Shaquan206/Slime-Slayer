@@ -11,14 +11,27 @@ public class Enemy : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    // Enemy Stats
     public float moveSpeed;
-
     public int health;
     public int damage;
     public int XPAmount;
+    public float despawnRange;
+
+    // Game Manager
+    private GameObject gameManager;
+    private GameManager gameManagerScript;
 
     private void Start()
     {
+        // Get Game Manager Componet
+        gameManager = GameObject.Find("Game Manager");
+        gameManagerScript = gameManager.GetComponent<GameManager>();
+
+        // Add A Entidy
+        gameManagerScript.entitys++;
+
+        // Get Player GameObject 
         player = GameObject.Find("Player");
         healthSlider.maxValue = health;
         healthSlider.value = health;
@@ -27,6 +40,12 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         healthSlider.value = health;
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance > despawnRange)
+        {
+            gameManagerScript.entitys--;
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -42,6 +61,7 @@ public class Enemy : MonoBehaviour
             health -= playerScript.damage;
             if (health < 1)
             {
+                gameManagerScript.entitys--;
                 playerScript.XP += XPAmount;
                 Destroy(gameObject);
             }

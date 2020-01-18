@@ -361,6 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1917287815}
+  entitys: 0
+  entityLimit: 10
   redSlimePrefab: {fileID: 8647966940030260511, guid: 3d994d21555c7446d8f6ddb5d6e331f9,
     type: 3}
   redSlimeSpawnPoint: {fileID: 1898326754}
