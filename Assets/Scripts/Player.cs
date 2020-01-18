@@ -17,14 +17,24 @@ public class Player : MonoBehaviour
 
     public int damage;
     public int health;
+    public int maxHealth;
+
+    public float regenerateSpeed;
 
     public float attackSpeed;
     public float attackTime;
 
     private bool attacking;
+    private bool regenerating;
+
+    private bool attacked;
+
+    GameObject enemy;
+    Enemy enemyScript;
 
     private void Start()
     {
+        healthSlider.maxValue = maxHealth;
         healthSlider.value = health;
     }
 
@@ -37,6 +47,10 @@ public class Player : MonoBehaviour
         {
             LevelUp();
         }
+        if (regenerating == false)
+        {
+            StartCoroutine(Regenerate());
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             if (attacking == false)
@@ -46,15 +60,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            GameObject redSlime = collision.gameObject;
-            Enemy redSlimeScript = redSlime.GetComponent<Enemy>();
-            health -= redSlimeScript.damage;
-            CheckDead();
+            if (attacked == false)
+            {
+                StartCoroutine(BeingAttacked());
+                enemy = collision.gameObject;
+                enemyScript = enemy.GetComponent<Enemy>();
+                health -= enemyScript.damage;
+                CheckDead();
+            }
         }
+    }
+
+    IEnumerator BeingAttacked()
+    {
+        attacked = true;
+        yield return new WaitForSeconds(0.5f);
+        attacked = false;
     }
 
     private void CheckDead()
@@ -77,14 +102,27 @@ public class Player : MonoBehaviour
 
     private void LevelUp()
     {
+        maxHealth += 10;
+        healthSlider.maxValue = maxHealth;
         XP = 0;
         level++;
-        health += 10;
+        health = maxHealth;
         damage++;
         attackSpeed -= 0.1f;
         if (attackSpeed < 0.1f)
         {
             attackSpeed = 0.1f;
         }
+    }
+
+    IEnumerator Regenerate()
+    {
+        regenerating = true;
+        yield return new WaitForSeconds(regenerateSpeed);
+        if (health < maxHealth)
+        {
+            health++;
+        }
+        regenerating = false;
     }
 }
