@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject player;
+
     public GameObject redSlimePrefab;
     public GameObject redSlimeSpawnPoint;
     public float redSlimeSpawnRate;
+    public float redSlimeSpawnRange;
     public bool isSpawningRedSlime;
 
     public GameObject blueSlimePrefab;
     public GameObject blueSlimeSpawnPoint;
     public float blueSlimeSpawnRate;
+    public float blueSlimeSpawnRange;
     public bool isSpawningBlueSlime;
 
 
@@ -19,12 +23,20 @@ public class GameManager : MonoBehaviour
     {
         if (isSpawningRedSlime == false)
         {
-            StartCoroutine(SpawnRedSlime());
+            float dist = Vector3.Distance(redSlimeSpawnPoint.transform.position, player.transform.position);
+            if (dist < redSlimeSpawnRange)
+            {
+                StartCoroutine(SpawnRedSlime());
+            }
         }
 
         if (isSpawningBlueSlime == false)
         {
-            StartCoroutine(SpawnBlueSlime());
+            float dist = Vector3.Distance(blueSlimeSpawnPoint.transform.position, player.transform.position);
+            if (dist < blueSlimeSpawnRange)
+            {
+                StartCoroutine(SpawnBlueSlime());
+            }
         }
     }
 

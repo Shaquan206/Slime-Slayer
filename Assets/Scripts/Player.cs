@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         healthSlider.value = health;
         levelText.text = level.ToString("Level: " + level);
         XPText.text = XP.ToString("XP: " + XP);
-        if (XP > level)
+        if (XP > level * level)
         {
             LevelUp();
         }
