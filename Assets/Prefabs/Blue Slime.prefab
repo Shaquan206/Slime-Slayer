@@ -255,10 +255,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 2827709898457469615}
   rb: {fileID: 2827709898352985556}
-  moveSpeed: 1
-  health: 10
-  damage: 3
-  XPAmount: 2
+  moveSpeed: 1.5
+  health: 20
+  damage: 8
+  XPAmount: 3
 --- !u!95 &3091883475864182611
 Animator:
   serializedVersion: 3
