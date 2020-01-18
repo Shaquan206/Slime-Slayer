@@ -73109,6 +73109,8 @@ MonoBehaviour:
   XP: 0
   damage: 1
   health: 10
+  maxHealth: 10
+  regenerateSpeed: 1
   attackSpeed: 1
   attackTime: 0.05
 --- !u!1 &2017191269
