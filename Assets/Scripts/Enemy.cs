@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
+        healthSlider.maxValue = health;
         healthSlider.value = health;
     }
 
